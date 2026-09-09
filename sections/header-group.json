@@ -17,8 +17,8 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "Welcome to our store",
-            "link": "",
+            "text": "Visit MyChoirRobes.com for choir robes and clergy attire",
+            "link": "https://www.mychoirrobes.com",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
             "weight": "",
