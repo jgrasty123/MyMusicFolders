@@ -164,6 +164,10 @@
   </script>
 </div>
 
+
+<script src="{{ 'mmf-embossing.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{%- endif -%}
+
 {% stylesheet %}
   .mmf-emb { display: block; width: 100%; margin-block: var(--padding-lg) 0; }
   .mmf-emb__legend, .mmf-emb__title {
@@ -229,9 +233,6 @@
     .mmf-emb__sub { transition: opacity .15s ease; }
   }
 {% endstylesheet %}
-
-<script src="{{ 'mmf-embossing.js' | asset_url }}" type="module" fetchpriority="low"></script>
-{%- endif -%}
 
 {% schema %}
 {

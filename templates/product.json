@@ -246,7 +246,7 @@
               "settings": {
                 "gate_heading": "Add embossing to your folder?",
                 "lead_time": "Please allow up to two weeks for embossing.",
-                "padding-block-start": 24,
+                "padding-block-start": 32,
                 "padding-block-end": 0
               }
             }
