@@ -1,0 +1,263 @@
+{%- liquid
+  assign product = closest.product
+  assign enabled = false
+  if product.tags contains 'embossing-available'
+    assign enabled = true
+  endif
+  assign product_form_id = 'BuyButtons-ProductForm-' | append: section.id
+
+  assign p_name    = all_products['embossing-names-instruments']
+  assign p_repeat  = all_products['embossing-repeated-text']
+  assign p_logo    = all_products['embossing-custom-logo']
+  assign p_machine = all_products['embossing-machine-numbers']
+  assign p_hand    = all_products['embossing-hand-set-numbers']
+  assign p_die     = all_products['embossing-die-one-time-die-charge']
+  assign p_prep    = all_products['preparation-for-embossing-a-repeating-phrase']
+-%}
+
+{%- if enabled -%}
+<div class="mmf-emb spacing-style" style="{% render 'spacing-style', settings: block.settings %}" {{ block.shopify_attributes }}>
+
+  <fieldset class="mmf-emb__gate">
+    <legend class="mmf-emb__legend">{{ block.settings.gate_heading | escape }}</legend>
+    <label class="mmf-emb__radio">
+      <input type="radio" name="mmf-emb-gate" value="no" checked data-gate>
+      <span>No embossing</span>
+    </label>
+    <label class="mmf-emb__radio">
+      <input type="radio" name="mmf-emb-gate" value="yes" data-gate>
+      <span>Yes &mdash; add embossing to my folder</span>
+    </label>
+  </fieldset>
+
+  <div class="mmf-emb__panel" data-panel hidden>
+
+    {%- if block.settings.lead_time != blank -%}
+      <p class="mmf-emb__notice">{{ block.settings.lead_time | escape }}</p>
+    {%- endif -%}
+
+    <h3 class="mmf-emb__title">Choose your embossing</h3>
+    <p class="mmf-emb__hint">Add as many as you like. Each one is priced separately and shown in your cart.</p>
+
+    {%- comment -%} ---------- NAME ---------- {%- endcomment -%}
+    {%- if p_name != blank -%}
+    <section class="mmf-emb__opt" data-opt="name">
+      <label class="mmf-emb__check">
+        <input type="checkbox" data-toggle="name">
+        <span class="mmf-emb__check-label">Emboss a name
+          <em>{{ p_name.price | money }} per folder</em>
+        </span>
+      </label>
+      <div class="mmf-emb__sub" data-sub="name" hidden>
+        {% render 'mmf-emb-font', key: 'Name', form: product_form_id %}
+        {% render 'mmf-emb-placement', key: 'Name', form: product_form_id, scope: 'all' %}
+        <label class="mmf-emb__field">
+          <span>Text <b>required</b></span>
+          <textarea name="properties[Name — Text]" form="{{ product_form_id }}" rows="2"
+            placeholder="A single name, or a comma-separated list for a whole ensemble" data-req="name"></textarea>
+        </label>
+        <p class="mmf-emb__hint">One folder per name. For a full roster, paste the list and set quantity to match.</p>
+      </div>
+    </section>
+    {%- endif -%}
+
+    {%- comment -%} ---------- REPEATED TEXT ---------- {%- endcomment -%}
+    {%- if p_repeat != blank -%}
+    <section class="mmf-emb__opt" data-opt="repeat">
+      <label class="mmf-emb__check">
+        <input type="checkbox" data-toggle="repeat">
+        <span class="mmf-emb__check-label">Emboss repeated text
+          <em>{{ p_repeat.price | money }} per folder{% if p_prep != blank %} &middot; {{ p_prep.price | money }} one-time setup{% endif %}</em>
+        </span>
+      </label>
+      <div class="mmf-emb__sub" data-sub="repeat" hidden>
+        <p class="mmf-emb__hint">The same text on every folder &mdash; your school, church or ensemble name.</p>
+        {% render 'mmf-emb-font', key: 'Repeat', form: product_form_id %}
+        {% render 'mmf-emb-placement', key: 'Repeat', form: product_form_id, scope: 'all' %}
+        <label class="mmf-emb__field">
+          <span>1st line <b>required</b></span>
+          <input type="text" name="properties[Repeat — 1st line]" form="{{ product_form_id }}" data-req="repeat">
+        </label>
+        <label class="mmf-emb__field">
+          <span>2nd line <i>optional</i></span>
+          <input type="text" name="properties[Repeat — 2nd line]" form="{{ product_form_id }}">
+        </label>
+        <label class="mmf-emb__field">
+          <span>3rd line <i>optional</i></span>
+          <input type="text" name="properties[Repeat — 3rd line]" form="{{ product_form_id }}">
+        </label>
+      </div>
+    </section>
+    {%- endif -%}
+
+    {%- comment -%} ---------- LOGO ---------- {%- endcomment -%}
+    {%- if p_logo != blank -%}
+    <section class="mmf-emb__opt" data-opt="logo">
+      <label class="mmf-emb__check">
+        <input type="checkbox" data-toggle="logo">
+        <span class="mmf-emb__check-label">Emboss a logo or crest
+          <em>{{ p_logo.price | money }} per folder{% if p_die != blank %} &middot; {{ p_die.price | money }} one-time die{% endif %}</em>
+        </span>
+      </label>
+      <div class="mmf-emb__sub" data-sub="logo" hidden>
+        {% render 'mmf-emb-placement', key: 'Logo', form: product_form_id, scope: 'front' %}
+        <fieldset class="mmf-emb__field">
+          <legend>Do we already have your die on file? <b>required</b></legend>
+          <label class="mmf-emb__radio"><input type="radio" name="properties[Logo — Die on file]" value="Yes" form="{{ product_form_id }}" data-die><span>Yes</span></label>
+          <label class="mmf-emb__radio"><input type="radio" name="properties[Logo — Die on file]" value="No" form="{{ product_form_id }}" data-die checked><span>No &mdash; new die</span></label>
+        </fieldset>
+        <label class="mmf-emb__field" data-die-upload>
+          <span>Artwork <b>required for a new die</b></span>
+          <input type="file" name="properties[Logo — Artwork]" form="{{ product_form_id }}" accept=".jpg,.jpeg,.png,.pdf,.ai,.eps,.svg" data-file>
+          <small>Black and white only. Vector preferred, or high-resolution JPG or PNG.</small>
+        </label>
+      </div>
+    </section>
+    {%- endif -%}
+
+    {%- comment -%} ---------- NUMBERING ---------- {%- endcomment -%}
+    {%- if p_machine != blank or p_hand != blank -%}
+    <section class="mmf-emb__opt" data-opt="number">
+      <label class="mmf-emb__check">
+        <input type="checkbox" data-toggle="number">
+        <span class="mmf-emb__check-label">Emboss sequential numbers
+          <em>for tracking folders across an ensemble</em>
+        </span>
+      </label>
+      <div class="mmf-emb__sub" data-sub="number" hidden>
+        <fieldset class="mmf-emb__field">
+          <legend>Numbering style <b>required</b></legend>
+          {%- if p_machine != blank -%}
+          <label class="mmf-emb__radio"><input type="radio" name="properties[Numbers — Style]" value="Machine numbers" form="{{ product_form_id }}" data-numstyle checked><span>Machine set &mdash; {{ p_machine.price | money }} per folder</span></label>
+          {%- endif -%}
+          {%- if p_hand != blank -%}
+          <label class="mmf-emb__radio"><input type="radio" name="properties[Numbers — Style]" value="Hand-set numbers" form="{{ product_form_id }}" data-numstyle><span>Hand set &mdash; {{ p_hand.price | money }} per folder</span></label>
+          {%- endif -%}
+        </fieldset>
+        {% render 'mmf-emb-placement', key: 'Numbers', form: product_form_id, scope: 'all' %}
+        <label class="mmf-emb__field">
+          <span>Starting number <i>optional</i></span>
+          <input type="text" name="properties[Numbers — Start at]" form="{{ product_form_id }}" placeholder="Defaults to 01">
+        </label>
+        <label class="mmf-emb__field">
+          <span>Notes <i>optional</i></span>
+          <input type="text" name="properties[Numbers — Notes]" form="{{ product_form_id }}">
+        </label>
+      </div>
+    </section>
+    {%- endif -%}
+
+    <p class="mmf-emb__error" data-error hidden></p>
+  </div>
+
+  <script type="application/json" data-mmf-emb-config>
+    {
+      "name":    {{ p_name.selected_or_first_available_variant.id | default: 0 | json }},
+      "repeat":  {{ p_repeat.selected_or_first_available_variant.id | default: 0 | json }},
+      "logo":    {{ p_logo.selected_or_first_available_variant.id | default: 0 | json }},
+      "machine": {{ p_machine.selected_or_first_available_variant.id | default: 0 | json }},
+      "hand":    {{ p_hand.selected_or_first_available_variant.id | default: 0 | json }},
+      "die":     {{ p_die.selected_or_first_available_variant.id | default: 0 | json }},
+      "prep":    {{ p_prep.selected_or_first_available_variant.id | default: 0 | json }},
+      "formId":  {{ product_form_id | json }}
+    }
+  </script>
+</div>
+
+{% stylesheet %}
+  .mmf-emb { display: block; width: 100%; margin-block: var(--padding-lg) 0; }
+  .mmf-emb__legend, .mmf-emb__title {
+    font-family: var(--font-heading--family);
+    font-size: var(--font-size--h6);
+    margin: 0 0 var(--padding-sm);
+  }
+  .mmf-emb__gate { border: 0; padding: 0; margin: 0 0 var(--padding-md); }
+  .mmf-emb__notice {
+    border-left: 3px solid var(--color-primary, #E4B33A);
+    padding: var(--padding-sm) var(--padding-md);
+    margin: 0 0 var(--padding-lg);
+    font-size: 0.9em;
+  }
+  .mmf-emb__hint { font-size: 0.85em; opacity: .7; margin: 0 0 var(--padding-sm); }
+  .mmf-emb__radio { display: flex; gap: .5rem; align-items: center; padding: .25rem 0; cursor: pointer; }
+  .mmf-emb__opt { border-top: 1px solid var(--color-border, #D9D7D2); padding: var(--padding-md) 0; }
+  .mmf-emb__check { display: flex; gap: .6rem; align-items: flex-start; cursor: pointer; }
+  .mmf-emb__check-label { display: flex; flex-direction: column; }
+  .mmf-emb__check-label em { font-style: normal; font-size: .85em; opacity: .7; }
+  .mmf-emb__sub { padding: var(--padding-md) 0 0 1.6rem; }
+  .mmf-emb__field { display: block; margin-block: var(--padding-md); border: 0; padding: 0; }
+  .mmf-emb__field > span, .mmf-emb__field > legend {
+    display: block; font-size: .85em; margin-bottom: .35rem;
+  }
+  .mmf-emb__field b { color: #b00; font-weight: 400; font-size: .9em; }
+  .mmf-emb__field i { opacity: .55; font-style: normal; font-size: .9em; }
+  .mmf-emb__field input[type="text"], .mmf-emb__field textarea, .mmf-emb__field select {
+    width: 100%;
+    border: 1px solid var(--color-border, #D9D7D2);
+    border-radius: 2px;
+    padding: .55rem .7rem;
+    font: inherit;
+    background: transparent;
+    color: inherit;
+  }
+  .mmf-emb__field small { display: block; opacity: .6; font-size: .8em; margin-top: .3rem; }
+  .mmf-emb__row { display: flex; gap: var(--padding-md); flex-wrap: wrap; }
+  .mmf-emb__row > * { flex: 1 1 10rem; }
+
+  /* Placement picker — CSS diagrams, no image assets required */
+  .mmf-emb__places { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; }
+  @media (max-width: 480px) { .mmf-emb__places { grid-template-columns: repeat(2, 1fr); } }
+  .mmf-emb__place { cursor: pointer; }
+  .mmf-emb__place input { position: absolute; opacity: 0; pointer-events: none; }
+  .mmf-emb__place-face {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    border: 1px solid var(--color-border, #D9D7D2);
+    background: #F4F4F2;
+    display: flex; align-items: flex-end; justify-content: center;
+    font-size: .6em; letter-spacing: .08em; color: #999; padding-bottom: .4rem;
+  }
+  .mmf-emb__place-bar {
+    position: absolute; height: 8%; width: 46%; background: #E4B33A; border-radius: 1px;
+  }
+  .mmf-emb__place-cap { display: block; font-size: .72em; margin-top: .3rem; text-align: center; }
+  .mmf-emb__place input:checked + .mmf-emb__place-face { outline: 2px solid #E4B33A; outline-offset: 1px; }
+  .mmf-emb__place input:focus-visible + .mmf-emb__place-face { outline: 2px solid currentColor; }
+  .mmf-emb__place.is-taken { opacity: .3; pointer-events: none; }
+  .mmf-emb__error { color: #b00; font-size: .9em; margin-top: var(--padding-md); }
+  @media (prefers-reduced-motion: no-preference) {
+    .mmf-emb__sub { transition: opacity .15s ease; }
+  }
+{% endstylesheet %}
+
+<script src="{{ 'mmf-embossing.js' | asset_url }}" type="module" fetchpriority="low"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Embossing options",
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Only shows on products tagged embossing-available."
+    },
+    {
+      "type": "text",
+      "id": "gate_heading",
+      "label": "Heading",
+      "default": "Add embossing to your folder?"
+    },
+    {
+      "type": "text",
+      "id": "lead_time",
+      "label": "Lead time notice",
+      "default": "Please allow up to two weeks for embossing."
+    },
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding-block-start", "label": "Top", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom", "min": 0, "max": 100, "step": 1, "unit": "px", "default": 0 }
+  ],
+  "presets": [{ "name": "Embossing options", "category": "Product" }]
+}
+{% endschema %}
