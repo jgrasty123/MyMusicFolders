@@ -1,0 +1,24 @@
+{%- comment -%} Font + size selects shared by the embossing option groups {%- endcomment -%}
+<div class="mmf-emb__row">
+  <label class="mmf-emb__field">
+    <span>Font <b>required</b></span>
+    <select name="properties[{{ key }} — Font]" form="{{ form }}" data-req="{{ key | downcase }}">
+      <option value="">Choose a font</option>
+      <option>Goudy Old Style</option>
+      <option>Goudy Italic</option>
+      <option>Cheltenham Condensed</option>
+      <option>Tempo Medium</option>
+    </select>
+  </label>
+  <label class="mmf-emb__field">
+    <span>Size <b>required</b></span>
+    <select name="properties[{{ key }} — Size]" form="{{ form }}" data-req="{{ key | downcase }}">
+      <option value="">Choose a size</option>
+      <option>18 point</option>
+      <option>24 point</option>
+      <option>30 point</option>
+      <option>36 point</option>
+      <option>48 point</option>
+    </select>
+  </label>
+</div>

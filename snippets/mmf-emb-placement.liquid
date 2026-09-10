@@ -1,0 +1,37 @@
+{%- comment -%}
+  Placement picker. scope: 'all' = 8 positions, 'front' = the 3 the logo die allows.
+  Diagrams are drawn in CSS so no image assets are needed.
+{%- endcomment -%}
+{%- liquid
+  if scope == 'front'
+    assign places = 'Front, Top, Center|front|top-center,Front, Middle, Center|front|middle-center,Front, Top, Right corner|front|top-right' | split: ','
+  else
+    assign places = 'Front, Top, Center|front|top-center,Front, Middle, Center|front|middle-center,Front, Top, Right corner|front|top-right,Back, Top, Center|back|top-center,Back, Middle, Center|back|middle-center,Back, Top, Left corner|back|top-left,Inside Front, Top, Center|inside front|top-center,Inside Front, Top, Left corner|inside front|top-left' | split: ','
+  endif
+-%}
+<fieldset class="mmf-emb__field">
+  <legend>Placement <b>required</b></legend>
+  <div class="mmf-emb__places" data-places="{{ key }}">
+    {%- for place in places -%}
+      {%- assign parts = place | split: '|' -%}
+      {%- assign label = parts[0] -%}
+      {%- assign face = parts[1] -%}
+      {%- assign pos = parts[2] -%}
+      {%- assign uid = key | append: '-' | append: forloop.index -%}
+      <label class="mmf-emb__place" data-place="{{ label }}">
+        <input type="radio" name="properties[{{ key }} — Placement]" value="{{ label }}"
+               form="{{ form }}" data-req="{{ key | downcase }}" id="mmfp-{{ uid }}">
+        <span class="mmf-emb__place-face">
+          <span class="mmf-emb__place-bar" style="
+            {%- if pos == 'top-center' -%}top:10%;left:27%;
+            {%- elsif pos == 'middle-center' -%}top:46%;left:27%;
+            {%- elsif pos == 'top-right' -%}top:10%;right:8%;width:34%;
+            {%- elsif pos == 'top-left' -%}top:10%;left:8%;width:34%;
+            {%- endif -%}"></span>
+          {{ face | upcase }}
+        </span>
+        <span class="mmf-emb__place-cap">{{ label }}</span>
+      </label>
+    {%- endfor -%}
+  </div>
+</fieldset>

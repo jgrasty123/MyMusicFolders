@@ -240,12 +240,22 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "mmf_embossing": {
+              "type": "mmf-embossing",
+              "settings": {
+                "gate_heading": "Add embossing to your folder?",
+                "lead_time": "Please allow up to two weeks for embossing.",
+                "padding-block-start": 24,
+                "padding-block-end": 0
+              }
             }
           },
           "block_order": [
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "mmf_embossing",
             "buy_buttons_eYQEYi",
             "text_aEtTtq"
           ]
