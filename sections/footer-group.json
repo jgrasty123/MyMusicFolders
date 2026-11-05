@@ -229,10 +229,21 @@
         "padding-block-start": 12,
         "padding-block-end": 16
       }
+    },
+    "footer_contact_mmf": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"mmf-fcontact\">\n  <div>\n    <p class=\"mmf-fcontact__h\">Contact us</p>\n    <p>400 W Broadway Suite 1, #159, Missoula, MT 59802</p>\n    <p><a href=\"tel:+18882660731\">Call us at 888-266-0731</a></p>\n  </div>\n  <div>\n    <p class=\"mmf-fcontact__h\">Reviews</p>\n    <p><a href=\"https://www.shopperapproved.com/reviews/mymusicfolders.com\" target=\"_blank\" rel=\"noopener\">Read our customer reviews on Shopper Approved</a></p>\n  </div>\n</div>\n<style>\n  .mmf-fcontact{display:flex;flex-wrap:wrap;gap:24px 64px;font-size:.875rem}\n  .mmf-fcontact p{margin:0 0 4px}\n  .mmf-fcontact__h{font-weight:600;margin-bottom:8px!important}\n  .mmf-fcontact a{color:inherit;text-decoration:underline;text-underline-offset:2px}\n</style>",
+        "background_color": "{{ settings.color_palette.color1 }}",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 16
+      }
     }
   },
   "order": [
     "footer",
+    "footer_contact_mmf",
     "utilities"
   ]
 }

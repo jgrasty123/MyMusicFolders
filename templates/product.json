@@ -194,12 +194,20 @@
                     "text_color": ""
                   },
                   "blocks": {}
+                },
+                "sa_stars": {
+                  "type": "custom-liquid",
+                  "settings": {
+                    "custom_liquid": "<div id=\"product_just_stars\" class=\"reg\"></div>"
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
                 "crumbs",
                 "text_xpVMaM",
                 "vendor",
+                "sa_stars",
                 "price_tVjtKg",
                 "sku",
                 "bulk"
@@ -473,6 +481,27 @@
                   "block_order": [
                     "t"
                   ]
+                },
+                "reviews": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Reviews",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "t": {
+                      "type": "custom-liquid",
+                      "settings": {
+                        "custom_liquid": "{%- liquid\n  assign sa_sku = product.selected_or_first_available_variant.sku\n  if sa_sku == blank\n    assign sa_sku = product.variants.first.sku\n  endif\n-%}\n<div id=\"SA_review_wrapper\"></div>\n{%- if sa_sku != blank -%}\n<script>\n  var sa_product = {{ sa_sku | json }};\n  var sa_interval = 5000;\n  (function () {\n    function saLoad(src) { var js = document.createElement('script'); js.src = src; js.async = true; document.head.appendChild(js); }\n    if (typeof shopper_first === 'undefined') saLoad('https://www.shopperapproved.com/widgets/40782/product/' + encodeURIComponent(sa_product) + '/product-widget/7f2PnLzJC2hQ.js');\n    saLoad('https://www.shopperapproved.com/widgets/group2.0/40782.js');\n    document.addEventListener('click', function (e) {\n      if (!e.target.closest('.sa_jump_to_reviews, a[href$=\"#SA_review_wrapper\"]')) return;\n      var w = document.getElementById('SA_review_wrapper');\n      var d = w && w.closest('details');\n      if (d) { d.open = true; e.preventDefault(); w.scrollIntoView({ behavior: 'smooth', block: 'start' }); }\n    });\n  })();\n</script>\n{%- endif -%}"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "t"
+                  ]
                 }
               },
               "block_order": [
@@ -480,6 +509,7 @@
                 "warranty",
                 "info",
                 "embossing",
+                "reviews",
                 "educator"
               ]
             }

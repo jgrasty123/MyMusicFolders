@@ -27,25 +27,10 @@
             "text_color": ""
           },
           "blocks": {}
-        },
-        "announcement_phone": {
-          "type": "_announcement",
-          "settings": {
-            "text": "Questions? Call us at 888-266-0731",
-            "link": "",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none",
-            "text_color": ""
-          },
-          "blocks": {}
         }
       },
       "block_order": [
-        "announcement_BxgCk9",
-        "announcement_phone"
+        "announcement_BxgCk9"
       ],
       "name": "t:names.announcement_bar",
       "settings": {
@@ -65,7 +50,7 @@
           "type": "_header-logo",
           "static": true,
           "settings": {
-            "hide_logo_on_home_page": true,
+            "hide_logo_on_home_page": false,
             "padding-block-start": 0,
             "padding-block-end": 0
           },
@@ -140,10 +125,21 @@
         "collection_inverse_logo": false,
         "text_color_transparent_collection": ""
       }
+    },
+    "utility_bar_mmf": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"mmf-util\">\n  <a href=\"tel:+18882660731\">Call us at 888-266-0731</a>\n  <span class=\"mmf-util__sep\" aria-hidden=\"true\">|</span>\n  <span class=\"mmf-util__addr\">400 W Broadway Suite 1, #159, Missoula, MT 59802</span>\n</div>\n<style>\n  .mmf-util{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:.8125rem}\n  .mmf-util a{color:inherit;text-decoration:underline;text-underline-offset:2px}\n  @media (max-width:749px){.mmf-util{justify-content:center}.mmf-util__sep,.mmf-util__addr{display:none}}\n</style>",
+        "background_color": "",
+        "section_width": "page-width",
+        "padding-block-start": 8,
+        "padding-block-end": 8
+      }
     }
   },
   "order": [
     "header_announcements_9jGBFp",
+    "utility_bar_mmf",
     "header_section"
   ]
 }
