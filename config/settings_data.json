@@ -9,8 +9,8 @@
  */
 {
   "current": {
-    "logo_height": 44,
-    "logo_height_mobile": 32,
+    "logo_height": 56,
+    "logo_height_mobile": 36,
     "type_body_font": "archivo_n4",
     "type_subheading_font": "archivo_n6",
     "type_heading_font": "source_serif_pro_n6",
@@ -82,7 +82,9 @@
       "color1": "#E4B33A",
       "color2": "#F4F4F2",
       "color3": "#D9D7D2"
-    }
+    },
+    "logo": "shopify://shop_images/mmf-logo.png",
+    "favicon": "shopify://shop_images/mmf-favicon.png"
   },
   "presets": {
     "Default": {
