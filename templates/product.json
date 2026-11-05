@@ -384,7 +384,7 @@
                     "t": {
                       "type": "text",
                       "settings": {
-                        "text": "<p>Every MyMusicFolders folder is backed by our 90-day guarantee. If something isn’t right, <a href=\"/pages/contact\">contact us</a> or call 888-266-0731 and we’ll make it right.</p>",
+                        "text": "<p>90-day warranty against manufacturer’s defects. If something isn’t right, <a href=\"/pages/contact\">contact us</a> or call 888-266-0731.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -421,27 +421,9 @@
                   },
                   "blocks": {
                     "t": {
-                      "type": "text",
+                      "type": "custom-liquid",
                       "settings": {
-                        "text": "<p><strong>Brand:</strong> {{ closest.product.vendor }}</p><p><strong>Type:</strong> {{ closest.product.type }}</p><p>Questions about sizing or embossing? See our <a href=\"/pages/contact\">FAQ</a> or call 888-266-0731.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "rte",
-                        "font": "var(--font-body--family)",
-                        "font_size": "",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 0,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0,
-                        "text_color": ""
+                        "custom_liquid": "{%- assign v = product.selected_or_first_available_variant -%}\n<dl class=\"mmf-specs\">\n  {%- if v.sku != blank -%}<dt>SKU</dt><dd>{{ v.sku }}</dd>{%- endif -%}\n  {%- if v.barcode != blank -%}<dt>UPC</dt><dd>{{ v.barcode }}</dd>{%- endif -%}\n  <dt>Brand</dt><dd>{{ product.vendor }}</dd>\n  <dt>Condition</dt><dd>New</dd>\n  {%- if v.weight > 0 -%}<dt>Weight</dt><dd>{{ v.weight | weight_with_unit }}</dd>{%- endif -%}\n  {%- if product.metafields.custom.dimensions != blank -%}<dt>Dimensions</dt><dd>{{ product.metafields.custom.dimensions }}</dd>{%- endif -%}\n</dl>\n<style>.mmf-specs{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0}.mmf-specs dt{font-weight:600}.mmf-specs dd{margin:0}</style>"
                       },
                       "blocks": {}
                     }
@@ -488,12 +470,34 @@
                   "block_order": [
                     "t"
                   ]
+                },
+                "embossing": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Embossing",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "t": {
+                      "type": "custom-liquid",
+                      "settings": {
+                        "custom_liquid": "{%- liquid\n  assign p_name = all_products['embossing-names-instruments']\n  assign p_repeat = all_products['embossing-repeated-text']\n  assign p_logo = all_products['embossing-custom-logo']\n  assign p_num = all_products['embossing-machine-numbers']\n-%}\n{%- if product.tags contains 'embossing-available' -%}\n<div class=\"mmf-emb-info\">\n  <p>Gold foil embossing is ordered right here on the folder page: choose <strong>Yes</strong> under “Add embossing to your folder?” above. Please allow up to two weeks for embossing.</p>\n  <h4>Names / Instruments{% if p_name.price %} &middot; {{ p_name.price | money }} each{% endif %}</h4>\n  <p>A personal name or instrument name on each folder. Add a note in the comments if there might be any confusion about which folders to imprint.</p>\n  <h4>Repeated text</h4>\n  <p>Your school, church or group name, the same on every folder (quantity discounts apply). Most often placed front middle center, but it can go anywhere on the folder.</p>\n  <h4>Custom logo</h4>\n  <p>Your school, church or group logo or crest, the same on every folder. Upload digital art when you order. Most often placed front middle center.</p>\n  <h4>Sequential numbering</h4>\n  <p>Gold foil numbers, usually in the upper right corner of the front cover, starting at 01. Tell us in the comments if you need specific numbers or a different starting number.</p>\n  <p><a href=\"/collections/embossing\">See embossing examples and fonts</a></p>\n</div>\n<style>.mmf-emb-info h4{margin:16px 0 4px;font-size:1rem}.mmf-emb-info p{margin:0 0 8px}</style>\n{%- else -%}\n<p>Gold foil embossing is available on our choral and instrumental folders. <a href=\"/collections/embossing\">See embossing options</a>.</p>\n{%- endif -%}"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "t"
+                  ]
                 }
               },
               "block_order": [
                 "desc",
                 "warranty",
                 "info",
+                "embossing",
                 "educator"
               ]
             }
@@ -538,7 +542,7 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h2>You may also like </h2>",
+            "text": "<h2>Related Products</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
