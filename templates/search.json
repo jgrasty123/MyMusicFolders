@@ -161,21 +161,32 @@
       },
       "settings": {
         "layout_type": "grid",
-        "product_card_size": "medium",
-        "mobile_product_card_size": "small",
+        "product_card_size": "large",
+        "mobile_product_card_size": "large",
         "product_grid_width": "centered",
         "full_width_on_mobile": true,
-        "columns_gap_horizontal": 16,
-        "columns_gap_vertical": 24,
+        "columns_gap_horizontal": 24,
+        "columns_gap_vertical": 32,
         "padding-inline-start": 0,
         "padding-inline-end": 0,
         "padding-block-start": 40,
         "padding-block-end": 40
       }
+    },
+    "grid_css_mmf": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<style>\n  /* Collection grid: 3 per row on desktop, 2 on tablet, 1 on phones (set in section settings) */\n  @media screen and (min-width: 990px) {\n    .product-grid.product-grid--grid:not([product-grid-view='zoom-out']) { --product-grid-columns-desktop: repeat(3, minmax(0, 1fr)) !important; }\n  }\n  @media screen and (min-width: 750px) and (max-width: 989px) {\n    .product-grid.product-grid--grid:not([product-grid-view='zoom-out']) { --product-grid-columns-desktop: repeat(2, minmax(0, 1fr)) !important; }\n  }\n  .product-grid .product-grid__card img { width: 100%; height: auto; }\n</style>",
+        "background_color": "",
+        "section_width": "page-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
     "search",
-    "main"
+    "main",
+    "grid_css_mmf"
   ]
 }
