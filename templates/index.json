@@ -9,133 +9,14 @@
  */
 {
   "sections": {
-    "hero_mmf": {
-      "type": "hero",
-      "blocks": {
-        "h1": {
-          "type": "text",
-          "settings": {
-            "text": "<h1>Sheet music, held steady.</h1>",
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "h1",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "balance",
-            "text_color": "#ffffff",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "sub": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Choral and instrumental folders made in Missoula, Montana. Brass corners, hand straps and octavo cords on every one, with a 90-day guarantee behind it.</p>",
-            "width": "fit-content",
-            "max_width": "narrow",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "#ffffff",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 16,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "cta": {
-          "type": "button",
-          "settings": {
-            "label": "Shop choral folders",
-            "link": "shopify://collections/choral-folders",
-            "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "#e4b33a",
-            "custom_button_text": "#000000",
-            "custom_button_border": "#e4b33a",
-            "link_text_color": "",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        },
-        "cta2": {
-          "type": "button",
-          "settings": {
-            "label": "Shop instrumental folders",
-            "link": "shopify://collections/instrumental-folders",
-            "open_in_new_tab": false,
-            "style_class": "button-secondary",
-            "custom_button_background": "{{ settings.color_palette.foreground }}",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "link_text_color": "",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "h1",
-        "sub",
-        "cta",
-        "cta2"
-      ],
+    "hero_slides_mmf": {
+      "type": "custom-liquid",
       "settings": {
-        "media_type_1": "image",
-        "image_1": "shopify://shop_images/2024.04_mypad_sonata_problem_slider_1400x600__21729.jpg",
-        "media_type_2": "image",
-        "image_2": "shopify://shop_images/2024.04_mypad_slider_1400x600__23576.webp",
-        "stack_media_on_mobile": false,
-        "custom_mobile_media": false,
-        "media_type_1_mobile": "image",
-        "media_type_2_mobile": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 16,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "background_color": "#000000",
-        "toggle_overlay": true,
-        "overlay_color": "#000000a6",
-        "overlay_style": "gradient",
-        "gradient_direction": "to top",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 72,
-        "padding-block-end": 72
+        "custom_liquid": "{%- liquid\n  assign s1 = images['2024.04_mypad_sonata_problem_slider_1400x600__21729.jpg']\n  assign s2 = images['2024.04_mypad_slider_1400x600__23576.webp']\n  assign s3 = images['mmf-slide-classroom-folders.jpg']\n-%}\n<div class=\"mmf-hero\" data-mmf-hero>\n  <div class=\"mmf-hero__track\" data-track>\n    <a class=\"mmf-hero__slide\" href=\"/products/mypad-folder\" aria-label=\"Shop the MyPad Folder\">{{ s1 | image_url: width: 1400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '600, 900, 1200, 1400', sizes: '(min-width: 1400px) 1400px, 100vw', alt: 'MyPad Folder for tablets and sheet music' }}</a>\n    <a class=\"mmf-hero__slide\" href=\"/products/mypad-folder\" aria-label=\"Shop the MyPad Folder\">{{ s2 | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1400', sizes: '(min-width: 1400px) 1400px, 100vw', alt: 'MyPad Folder holds an iPad up to 12.9 inches' }}</a>\n    <a class=\"mmf-hero__slide\" href=\"/products/classroom-band-folders\" aria-label=\"Shop classroom folders\">{{ s3 | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1400', sizes: '(min-width: 1400px) 1400px, 100vw', alt: 'Classroom music folders in a selection of colors' }}</a>\n  </div>\n  <button type=\"button\" class=\"mmf-hero__arrow mmf-hero__arrow--prev\" data-prev aria-label=\"Previous slide\">&#8249;</button>\n  <button type=\"button\" class=\"mmf-hero__arrow mmf-hero__arrow--next\" data-next aria-label=\"Next slide\">&#8250;</button>\n  <div class=\"mmf-hero__dots\" data-dots></div>\n</div>\n<style>\n  .mmf-hero{position:relative;max-width:1400px;margin:0 auto}\n  .mmf-hero__track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}\n  .mmf-hero__track::-webkit-scrollbar{display:none}\n  .mmf-hero__slide{flex:0 0 100%;scroll-snap-align:start;display:block;aspect-ratio:7/3}\n  .mmf-hero__slide img{width:100%;height:100%;object-fit:cover;display:block}\n  .mmf-hero__arrow{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.85);font-size:30px;line-height:1;cursor:pointer;color:#000}\n  .mmf-hero__arrow--prev{left:12px}.mmf-hero__arrow--next{right:12px}\n  .mmf-hero__dots{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:8px}\n  .mmf-hero__dots button{width:12px;height:12px;border-radius:50%;border:2px solid #e4b33a;background:#fff;padding:0;cursor:pointer}\n  .mmf-hero__dots button[aria-current=\"true\"]{background:#e4b33a}\n  @media (max-width:749px){.mmf-hero__arrow{display:none}}\n</style>\n<script>\n  (function(){\n    var root=document.currentScript.previousElementSibling.previousElementSibling;\n    if(!root||!root.matches('[data-mmf-hero]'))return;\n    var track=root.querySelector('[data-track]'),slides=track.children,dots=root.querySelector('[data-dots]'),i=0,timer;\n    for(var n=0;n<slides.length;n++){(function(n){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Go to slide '+(n+1));b.onclick=function(){go(n);restart()};dots.appendChild(b)})(n)}\n    function mark(){[].forEach.call(dots.children,function(b,k){b.setAttribute('aria-current',k===i?'true':'false')})}\n    function go(n){i=(n+slides.length)%slides.length;track.scrollTo({left:track.clientWidth*i});mark()}\n    function restart(){clearInterval(timer);timer=setInterval(function(){go(i+1)},6000)}\n    root.querySelector('[data-prev]').onclick=function(){go(i-1);restart()};\n    root.querySelector('[data-next]').onclick=function(){go(i+1);restart()};\n    track.addEventListener('scroll',function(){var k=Math.round(track.scrollLeft/track.clientWidth);if(k!==i){i=k;mark()}},{passive:true});\n    root.addEventListener('mouseenter',function(){clearInterval(timer)});root.addEventListener('mouseleave',restart);\n    mark();restart();\n  })();\n</script>",
+        "background_color": "",
+        "section_width": "full-width",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "categories_mmf": {
@@ -183,7 +64,7 @@
             "t": {
               "type": "text",
               "settings": {
-                "text": "<h2>Shop by category</h2>",
+                "text": "<h2>Shop Top Categories</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -214,14 +95,14 @@
           "type": "_collection-card",
           "static": true,
           "settings": {
-            "placement": "on_image",
+            "placement": "below_image",
             "horizontal_alignment": "flex-start",
             "vertical_alignment": "center",
             "collection_card_gap": 8,
             "background_color": "",
-            "border": "none",
+            "border": "solid",
             "border_width": 1,
-            "border_opacity": 100,
+            "border_opacity": 15,
             "border_color": "",
             "border_radius": 0
           },
@@ -230,7 +111,7 @@
               "type": "_collection-card-image",
               "static": true,
               "settings": {
-                "image_ratio": "portrait",
+                "image_ratio": "square",
                 "toggle_overlay": false,
                 "overlay_color": "#00000026",
                 "overlay_style": "solid",
@@ -242,9 +123,35 @@
                 "border_radius": 0
               },
               "blocks": {}
+            },
+            "title": {
+              "type": "collection-title",
+              "settings": {
+                "width": "fill",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h5",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "text_color": "",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 12,
+                "padding-inline-start": 12,
+                "padding-inline-end": 12
+              },
+              "blocks": {}
             }
           },
-          "block_order": []
+          "block_order": [
+            "title"
+          ]
         }
       },
       "block_order": [
@@ -254,9 +161,10 @@
         "collection_list": [
           "choral-folders",
           "instrumental-folders",
-          "embossing",
+          "health-safety",
           "accessories-gifts",
-          "health-safety"
+          "embossing",
+          "shop-all"
         ],
         "layout_type": "grid",
         "carousel_on_mobile": false,
@@ -266,17 +174,17 @@
         "columns_gap": 16,
         "bento_gap": 8,
         "rows_gap": 16,
-        "max_collections": 5,
+        "max_collections": 6,
         "icons_style": "arrow",
         "icons_shape": "none",
         "section_width": "page-width",
         "gap": 24,
         "background_color": "",
-        "padding-block-start": 72,
-        "padding-block-end": 56
+        "padding-block-start": 48,
+        "padding-block-end": 32
       }
     },
-    "choral_mmf": {
+    "featured_mmf": {
       "type": "product-list",
       "blocks": {
         "static-header": {
@@ -316,7 +224,7 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h2>Choral folders</h2>",
+                "text": "<h2>Featured Products</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -342,7 +250,7 @@
               "type": "_product-list-button",
               "name": "t:names.product_list_button",
               "settings": {
-                "label": "View all choral folders",
+                "label": "View all",
                 "open_in_new_tab": false,
                 "style_class": "button-unstyled",
                 "custom_button_background": "{{ settings.color_palette.foreground }}",
@@ -450,10 +358,10 @@
         }
       },
       "settings": {
-        "collection": "choral-folders",
-        "layout_type": "grid",
+        "collection": "featured-products",
+        "layout_type": "carousel",
         "carousel_on_mobile": true,
-        "max_products": 8,
+        "max_products": 12,
         "columns": 4,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
@@ -465,483 +373,221 @@
         "horizontal_alignment": "flex-start",
         "gap": 24,
         "background_color": "",
-        "padding-block-start": 40,
-        "padding-block-end": 64
-      }
-    },
-    "embossing_mmf": {
-      "type": "collection-links",
-      "blocks": {
-        "link": {
-          "type": "_collection-link",
-          "static": true,
-          "settings": {
-            "show_count": true
-          },
-          "blocks": {
-            "title": {
-              "type": "_inline-collection-title",
-              "static": true,
-              "settings": {
-                "font": "var(--font-body--family)",
-                "weight": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none"
-              },
-              "blocks": {}
-            },
-            "image": {
-              "type": "_image",
-              "static": true,
-              "settings": {
-                "height": "large",
-                "ratio": "portrait",
-                "border_radius": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
-        }
-      },
-      "settings": {
-        "collection_list": [
-          "embossing"
-        ],
-        "layout": "spotlight",
-        "section_width": "page-width",
-        "alignment": "left",
-        "image_position": "right",
-        "background_color": "#f4f4f2",
-        "padding-block-start": 64,
-        "padding-block-end": 64
-      }
-    },
-    "instrumental_mmf": {
-      "type": "product-list",
-      "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "static": true,
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "heading": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h2>Instrumental folders</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "viewall": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all instrumental folders",
-                "open_in_new_tab": false,
-                "style_class": "button-unstyled",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "heading",
-            "viewall"
-          ]
-        },
-        "static-product-card": {
-          "type": "_product-card",
-          "static": true,
-          "settings": {
-            "product_card_gap": 6,
-            "background_color": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "gallery": {
-              "type": "_product-card-gallery",
-              "settings": {
-                "image_ratio": "square",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "title": {
-              "type": "product-title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 8,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price": {
-              "type": "price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "text_color": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "gallery",
-            "title",
-            "price"
-          ]
-        }
-      },
-      "settings": {
-        "collection": "instrumental-folders",
-        "layout_type": "grid",
-        "carousel_on_mobile": true,
-        "max_products": 4,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 16,
-        "rows_gap": 32,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 24,
-        "background_color": "",
-        "padding-block-start": 64,
-        "padding-block-end": 40
-      }
-    },
-    "accessories_mmf": {
-      "type": "product-list",
-      "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "static": true,
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "background_color": "",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "heading": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h2>Accessories & gifts</h2>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h3",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "viewall": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all accessories",
-                "open_in_new_tab": false,
-                "style_class": "button-unstyled",
-                "custom_button_background": "{{ settings.color_palette.foreground }}",
-                "custom_button_text": "{{ settings.color_palette.background }}",
-                "custom_button_border": "{{ settings.color_palette.background }}",
-                "link_text_color": "",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "heading",
-            "viewall"
-          ]
-        },
-        "static-product-card": {
-          "type": "_product-card",
-          "static": true,
-          "settings": {
-            "product_card_gap": 6,
-            "background_color": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_color": "",
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "gallery": {
-              "type": "_product-card-gallery",
-              "settings": {
-                "image_ratio": "square",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "title": {
-              "type": "product-title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "text_color": "",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 8,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price": {
-              "type": "price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "text_color": "",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "gallery",
-            "title",
-            "price"
-          ]
-        }
-      },
-      "settings": {
-        "collection": "accessories-gifts",
-        "layout_type": "grid",
-        "carousel_on_mobile": true,
-        "max_products": 4,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 16,
-        "rows_gap": 32,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 24,
-        "background_color": "",
-        "padding-block-start": 40,
-        "padding-block-end": 64
-      }
-    },
-    "statement_mmf": {
-      "type": "marquee",
-      "blocks": {
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>Choir folders, choral folders and band folders — by musicians, for musicians.</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "custom",
-            "font": "var(--font-heading--family)",
-            "font_size": "var(--font-size--h3)",
-            "line_height": "tight",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "nowrap",
-            "text_color": "#ffffff",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "text"
-      ],
-      "settings": {
-        "movement_direction": "normal",
-        "background_color": "#000000",
         "padding-block-start": 32,
-        "padding-block-end": 32,
-        "gap_between_elements": 64
+        "padding-block-end": 32
+      }
+    },
+    "popular_mmf": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "background_color": "",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "heading": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h2>Most Popular</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "viewall": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "button-unstyled",
+                "custom_button_background": "{{ settings.color_palette.foreground }}",
+                "custom_button_text": "{{ settings.color_palette.background }}",
+                "custom_button_border": "{{ settings.color_palette.background }}",
+                "link_text_color": "",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "heading",
+            "viewall"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 6,
+            "background_color": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "gallery": {
+              "type": "_product-card-gallery",
+              "settings": {
+                "image_ratio": "square",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "title": {
+              "type": "product-title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "text_color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "text_color": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "gallery",
+            "title",
+            "price"
+          ]
+        }
+      },
+      "settings": {
+        "collection": "most-popular",
+        "layout_type": "carousel",
+        "carousel_on_mobile": true,
+        "max_products": 12,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 16,
+        "rows_gap": 32,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 24,
+        "background_color": "",
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
+    },
+    "reviews_mmf": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"mmf-reviews\">\n  <h2 class=\"h3\" style=\"margin:0 0 16px\">What musicians are saying</h2>\n  <div id=\"SA_wrapper_59b7w3zqR5pN\" class=\"SA__wrapper\"></div>\n  <script src=\"https://www.shopperapproved.com/widgets/40782/merchant/rotating-widget/59b7w3zqR5pN.js?v=2\" defer></script>\n</div>",
+        "background_color": "",
+        "section_width": "page-width",
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
+    },
+    "video_mmf": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<script src=\"https://static.elfsight.com/platform/platform.js\" async></script>\n<div class=\"elfsight-app-cb5d3d60-9301-490e-a84e-5f4ae5e73820\" data-elfsight-app-lazy></div>",
+        "background_color": "",
+        "section_width": "page-width",
+        "padding-block-start": 32,
+        "padding-block-end": 32
       }
     },
     "blog_mmf": {
@@ -1081,19 +727,29 @@
         "section_width": "page-width",
         "gap": 24,
         "background_color": "",
-        "padding-block-start": 72,
-        "padding-block-end": 72
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "tagline_mmf": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<p class=\"mmf-tagline\"><a href=\"/collections/choral-folders\">Choir folders</a>, <a href=\"/collections/choral-folders\">choral folders</a>, and <a href=\"/collections/instrumental-folders\">band folders</a> by musicians, for musicians. We hope you make music today.</p>\n<style>.mmf-tagline{text-align:center;margin:0;font-size:1.05rem}.mmf-tagline a{color:inherit;text-decoration:underline;text-underline-offset:3px}</style>",
+        "background_color": "#f5f1e6",
+        "section_width": "page-width",
+        "padding-block-start": 32,
+        "padding-block-end": 32
       }
     }
   },
   "order": [
-    "hero_mmf",
+    "hero_slides_mmf",
     "categories_mmf",
-    "choral_mmf",
-    "embossing_mmf",
-    "instrumental_mmf",
-    "accessories_mmf",
-    "statement_mmf",
-    "blog_mmf"
+    "featured_mmf",
+    "popular_mmf",
+    "reviews_mmf",
+    "video_mmf",
+    "blog_mmf",
+    "tagline_mmf"
   ]
 }

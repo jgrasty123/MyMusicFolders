@@ -148,11 +148,79 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "crumbs": {
+                  "type": "custom-liquid",
+                  "settings": {
+                    "custom_liquid": "{%- liquid\n  assign crumb_coll = collection\n  if crumb_coll == blank\n    assign crumb_coll = product.collections | where: 'handle', 'choral-folders' | first\n    if crumb_coll == blank\n      assign crumb_coll = product.collections | where: 'handle', 'instrumental-folders' | first\n    endif\n    if crumb_coll == blank\n      assign crumb_coll = product.collections | first\n    endif\n  endif\n-%}\n<nav class=\"mmf-crumbs\" aria-label=\"Breadcrumb\"><a href=\"{{ routes.root_url }}\">Home</a><span aria-hidden=\"true\">/</span>{% if crumb_coll %}<a href=\"{{ crumb_coll.url }}\">{{ crumb_coll.title | escape }}</a><span aria-hidden=\"true\">/</span>{% endif %}<span aria-current=\"page\">{{ product.title | escape }}</span></nav>\n<style>.mmf-crumbs{font-size:.8125rem;display:flex;flex-wrap:wrap;gap:6px;opacity:.8}.mmf-crumbs a{color:inherit;text-decoration:underline;text-underline-offset:2px}</style>"
+                  },
+                  "blocks": {}
+                },
+                "vendor": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p><a href=\"{{ closest.product.vendor | url_for_vendor }}\">{{ closest.product.vendor }}</a></p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "text_color": ""
+                  },
+                  "blocks": {}
+                },
+                "sku": {
+                  "type": "sku",
+                  "settings": {
+                    "type_preset": "paragraph"
+                  },
+                  "blocks": {}
+                },
+                "bulk": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p><a href=\"/pages/music-educators-pricing\"><strong>Music educator? Buy in bulk and save</strong></a></p>",
+                    "width": "100%",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0,
+                    "text_color": ""
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
+                "crumbs",
                 "text_xpVMaM",
-                "price_tVjtKg"
+                "vendor",
+                "price_tVjtKg",
+                "sku",
+                "bulk"
               ]
             },
             "divider_VJhene": {
@@ -216,31 +284,6 @@
               },
               "block_order": []
             },
-            "text_aEtTtq": {
-              "type": "text",
-              "name": "t:names.product_description",
-              "settings": {
-                "text": "{{ closest.product.description }}",
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "mmf_embossing": {
               "type": "mmf-embossing",
               "settings": {
@@ -249,6 +292,214 @@
                 "padding-block-start": 32,
                 "padding-block-end": 0
               }
+            },
+            "inventory": {
+              "type": "product-inventory",
+              "settings": {
+                "inventory_threshold": 10,
+                "show_inventory_quantity": true,
+                "text_color": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "share": {
+              "type": "custom-liquid",
+              "settings": {
+                "custom_liquid": "<div class=\"mmf-share\" aria-label=\"Share this product\">\n  {%- assign u = shop.url | append: product.url | url_encode -%}{%- assign tt = product.title | url_encode -%}\n  <span>Share:</span>\n  <a href=\"https://www.facebook.com/sharer/sharer.php?u={{ u }}\" target=\"_blank\" rel=\"noopener\">Facebook</a>\n  <a href=\"https://twitter.com/intent/tweet?url={{ u }}&text={{ tt }}\" target=\"_blank\" rel=\"noopener\">X</a>\n  <a href=\"https://www.pinterest.com/pin/create/button/?url={{ u }}&description={{ tt }}\" target=\"_blank\" rel=\"noopener\">Pinterest</a>\n  <a href=\"https://www.linkedin.com/sharing/share-offsite/?url={{ u }}\" target=\"_blank\" rel=\"noopener\">LinkedIn</a>\n  <a href=\"mailto:?subject={{ tt }}&body={{ u }}\">Email</a>\n</div>\n<style>.mmf-share{display:flex;flex-wrap:wrap;gap:14px;font-size:.875rem;align-items:center}.mmf-share a{color:inherit;text-decoration:underline;text-underline-offset:2px}</style>"
+              },
+              "blocks": {}
+            },
+            "tabs": {
+              "type": "accordion",
+              "settings": {
+                "icon": "caret",
+                "dividers": true,
+                "divider_color": "{{ settings.color_palette.color3 }}",
+                "type_preset": "h5",
+                "background_color": "",
+                "text_color": "",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "desc": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Description",
+                    "open_by_default": true,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "t": {
+                      "type": "text",
+                      "settings": {
+                        "text": "{{ closest.product.description }}",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "text_color": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "t"
+                  ]
+                },
+                "warranty": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Warranty",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "t": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>90-day warranty against manufacturer’s defects. If something isn’t right, <a href=\"/pages/contact\">contact us</a> or call 888-266-0731.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "text_color": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "t"
+                  ]
+                },
+                "info": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Info",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "t": {
+                      "type": "custom-liquid",
+                      "settings": {
+                        "custom_liquid": "{%- assign v = product.selected_or_first_available_variant -%}\n<dl class=\"mmf-specs\">\n  {%- if v.sku != blank -%}<dt>SKU</dt><dd>{{ v.sku }}</dd>{%- endif -%}\n  {%- if v.barcode != blank -%}<dt>UPC</dt><dd>{{ v.barcode }}</dd>{%- endif -%}\n  <dt>Brand</dt><dd>{{ product.vendor }}</dd>\n  <dt>Condition</dt><dd>New</dd>\n  {%- if v.weight > 0 -%}<dt>Weight</dt><dd>{{ v.weight | weight_with_unit }}</dd>{%- endif -%}\n  {%- if product.metafields.custom.dimensions != blank -%}<dt>Dimensions</dt><dd>{{ product.metafields.custom.dimensions }}</dd>{%- endif -%}\n</dl>\n<style>.mmf-specs{display:grid;grid-template-columns:max-content 1fr;gap:6px 16px;margin:0}.mmf-specs dt{font-weight:600}.mmf-specs dd{margin:0}</style>"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "t"
+                  ]
+                },
+                "educator": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Music educator pricing",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "t": {
+                      "type": "text",
+                      "settings": {
+                        "text": "<p>Ordering for a whole choir, band or orchestra? <a href=\"/pages/music-educators-pricing\">See our music educator pricing</a> for bulk discounts and purchase orders.</p>",
+                        "width": "100%",
+                        "max_width": "normal",
+                        "alignment": "left",
+                        "type_preset": "rte",
+                        "font": "var(--font-body--family)",
+                        "font_size": "",
+                        "line_height": "normal",
+                        "letter_spacing": "normal",
+                        "case": "none",
+                        "wrap": "pretty",
+                        "background": false,
+                        "background_color": "#00000026",
+                        "corner_radius": 0,
+                        "padding-block-start": 0,
+                        "padding-block-end": 0,
+                        "padding-inline-start": 0,
+                        "padding-inline-end": 0,
+                        "text_color": ""
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "t"
+                  ]
+                },
+                "embossing": {
+                  "type": "_accordion-row",
+                  "settings": {
+                    "heading": "Embossing",
+                    "open_by_default": false,
+                    "icon": "none",
+                    "width": 20
+                  },
+                  "blocks": {
+                    "t": {
+                      "type": "custom-liquid",
+                      "settings": {
+                        "custom_liquid": "{%- liquid\n  assign p_name = all_products['embossing-names-instruments']\n  assign p_repeat = all_products['embossing-repeated-text']\n  assign p_logo = all_products['embossing-custom-logo']\n  assign p_num = all_products['embossing-machine-numbers']\n-%}\n{%- if product.tags contains 'embossing-available' -%}\n<div class=\"mmf-emb-info\">\n  <p>Gold foil embossing is ordered right here on the folder page: choose <strong>Yes</strong> under “Add embossing to your folder?” above. Please allow up to two weeks for embossing.</p>\n  <h4>Names / Instruments{% if p_name.price %} &middot; {{ p_name.price | money }} each{% endif %}</h4>\n  <p>A personal name or instrument name on each folder. Add a note in the comments if there might be any confusion about which folders to imprint.</p>\n  <h4>Repeated text</h4>\n  <p>Your school, church or group name, the same on every folder (quantity discounts apply). Most often placed front middle center, but it can go anywhere on the folder.</p>\n  <h4>Custom logo</h4>\n  <p>Your school, church or group logo or crest, the same on every folder. Upload digital art when you order. Most often placed front middle center.</p>\n  <h4>Sequential numbering</h4>\n  <p>Gold foil numbers, usually in the upper right corner of the front cover, starting at 01. Tell us in the comments if you need specific numbers or a different starting number.</p>\n  <p><a href=\"/collections/embossing\">See embossing examples and fonts</a></p>\n</div>\n<style>.mmf-emb-info h4{margin:16px 0 4px;font-size:1rem}.mmf-emb-info p{margin:0 0 8px}</style>\n{%- else -%}\n<p>Gold foil embossing is available on our choral and instrumental folders. <a href=\"/collections/embossing\">See embossing options</a>.</p>\n{%- endif -%}"
+                      },
+                      "blocks": {}
+                    }
+                  },
+                  "block_order": [
+                    "t"
+                  ]
+                }
+              },
+              "block_order": [
+                "desc",
+                "warranty",
+                "info",
+                "embossing",
+                "educator"
+              ]
             }
           },
           "block_order": [
@@ -256,8 +507,10 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "mmf_embossing",
+            "inventory",
             "buy_buttons_eYQEYi",
-            "text_aEtTtq"
+            "share",
+            "tabs"
           ]
         },
         "disclosures": {
@@ -289,7 +542,7 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h2>You may also like </h2>",
+            "text": "<h2>Related Products</h2>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
