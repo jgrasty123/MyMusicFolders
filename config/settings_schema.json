@@ -2116,5 +2116,66 @@
         "default": "equal-width-buttons"
       }
     ]
+  },
+  {
+    "name": "Product grid",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Products per row on collection and search pages. Applies to every collection. Choose \"Theme default\" to use each section's own card-size setting."
+      },
+      {
+        "type": "select",
+        "id": "mmf_grid_columns_desktop",
+        "label": "Products per row on desktop",
+        "options": [
+          {
+            "value": "default",
+            "label": "Theme default"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          }
+        ],
+        "default": "3"
+      },
+      {
+        "type": "select",
+        "id": "mmf_grid_columns_mobile",
+        "label": "Products per row on mobile",
+        "options": [
+          {
+            "value": "default",
+            "label": "Theme default"
+          },
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          }
+        ],
+        "default": "1"
+      },
+      {
+        "type": "paragraph",
+        "content": "Tablets show 2 per row when desktop is set to 3 or more."
+      }
+    ]
   }
 ]

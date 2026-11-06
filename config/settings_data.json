@@ -86,7 +86,9 @@
       "color1": "#E4B33A",
       "color2": "#F4F4F2",
       "color3": "#D9D7D2"
-    }
+    },
+    "mmf_grid_columns_desktop": "3",
+    "mmf_grid_columns_mobile": "1"
   },
   "presets": {
     "Default": {
