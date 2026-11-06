@@ -107,23 +107,6 @@
             "border_radius": 0
           },
           "blocks": {
-            "collection-card-image": {
-              "type": "_collection-card-image",
-              "static": true,
-              "settings": {
-                "image_ratio": "square",
-                "toggle_overlay": false,
-                "overlay_color": "#00000026",
-                "overlay_style": "solid",
-                "gradient_direction": "to top",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_color": "",
-                "border_radius": 0
-              },
-              "blocks": {}
-            },
             "title": {
               "type": "collection-title",
               "settings": {
@@ -145,6 +128,23 @@
                 "padding-block-end": 12,
                 "padding-inline-start": 12,
                 "padding-inline-end": 12
+              },
+              "blocks": {}
+            },
+            "collection-card-image": {
+              "type": "_collection-card-image",
+              "static": true,
+              "settings": {
+                "image_ratio": "square",
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_color": "",
+                "border_radius": 0
               },
               "blocks": {}
             }
@@ -169,7 +169,7 @@
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "columns": 3,
-        "mobile_columns": "2",
+        "mobile_columns": "1",
         "mobile_card_size": "60cqw",
         "columns_gap": 16,
         "bento_gap": 8,
