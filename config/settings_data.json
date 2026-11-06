@@ -68,6 +68,7 @@
     "currency_code_enabled_product_pages": false,
     "currency_code_enabled_product_cards": false,
     "currency_code_enabled_cart_items": false,
+    "product_card_carousel": false,
     "product_corner_radius": 0,
     "card_corner_radius": 2,
     "show_variant_image": false,
@@ -85,7 +86,9 @@
       "color1": "#E4B33A",
       "color2": "#F4F4F2",
       "color3": "#D9D7D2"
-    }
+    },
+    "mmf_grid_columns_desktop": "3",
+    "mmf_grid_columns_mobile": "1"
   },
   "presets": {
     "Default": {

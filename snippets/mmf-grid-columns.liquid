@@ -1,0 +1,28 @@
+{%- comment -%}
+  Products-per-row override for collection and search grids.
+  Driven by Theme settings > Product grid (mmf_grid_columns_desktop / mmf_grid_columns_mobile).
+  Leaves the shopper's own grid-view toggles (zoom-out, single column) alone.
+{%- endcomment -%}
+{%- liquid
+  assign d = settings.mmf_grid_columns_desktop | default: 'default'
+  assign m = settings.mmf_grid_columns_mobile | default: 'default'
+-%}
+{%- if d != 'default' or m != 'default' -%}
+<style>
+  {%- if d != 'default' -%}
+    {%- assign tablet = d | plus: 0 -%}
+    {%- if tablet > 2 -%}{%- assign tablet = 2 -%}{%- endif -%}
+    @media screen and (min-width: 990px) {
+      .product-grid.product-grid:not([product-grid-view='zoom-out']) { grid-template-columns: repeat({{ d }}, minmax(0, 1fr)); }
+    }
+    @media screen and (min-width: 750px) and (max-width: 989px) {
+      .product-grid.product-grid:not([product-grid-view='zoom-out']) { grid-template-columns: repeat({{ tablet }}, minmax(0, 1fr)); }
+    }
+  {%- endif -%}
+  {%- if m != 'default' -%}
+    @media screen and (max-width: 749px) {
+      .product-grid.product-grid:not([product-grid-view='mobile-single']):not([product-grid-view='zoom-out']) { grid-template-columns: repeat({{ m }}, minmax(0, 1fr)); }
+    }
+  {%- endif -%}
+</style>
+{%- endif -%}
