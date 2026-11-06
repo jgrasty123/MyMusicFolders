@@ -154,9 +154,14 @@ ROOTS.forEach((root) => {
     return !!(f && !f.disabled && f.files.length);
   };
 
-  form.addEventListener(
+  /* Listen on window in the capture phase. Horizon handles product form
+     submits with a capture listener on document, which runs before anything
+     on the form itself, so a form-level listener fired too late: the folder
+     was added by AJAX and then again by the native submit below. */
+  window.addEventListener(
     'submit',
     async (event) => {
+      if (event.target !== form) return;
       const problem = validate();
       if (problem) {
         event.preventDefault();
